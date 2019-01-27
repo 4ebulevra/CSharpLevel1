@@ -104,4 +104,111 @@ namespace Main
             return re + "+" + im + "i";
         }
     }
+
+    /*3.
+    *Описать класс дробей - рациональных чисел, являющихся отношением двух целых чисел.
+    Предусмотреть методы сложения, вычитания, умножения и деления дробей.
+    Написать программу, демонстрирующую все разработанные элементы класса.
+    ** Добавить проверку, чтобы знаменатель не равнялся 0. Выбрасывать исключение
+    ArgumentException("Знаменатель не может быть равен 0");
+    Добавить упрощение дробей.
+    */
+    class FractionalNumber
+    {
+        int numerator;
+        int divider;
+        int integer;
+
+        public static FractionalNumber operator +(FractionalNumber f1 , FractionalNumber f2)
+        {
+            FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
+
+            int newDiv;
+            FractionalNumber tempA = new FractionalNumber(f1.Integer, f1.Numerator, f1.Divider);
+            FractionalNumber tempB = new FractionalNumber(f2.Integer , f2.Numerator , f2.Divider);
+            newDiv = tempA.Divider * tempB.Divider;
+            tempA.Numerator = tempA.Numerator * tempB.Divider;
+            tempB.Numerator = tempB.Numerator * tempA.Divider;
+            tempA.Divider = newDiv;
+            tempB.Divider = newDiv;
+
+            rez.Integer = tempA.Integer + tempB.Integer;
+            rez.Divider = newDiv;
+            rez.Numerator = tempA.Numerator + tempB.Numerator;
+            rez.Recount();
+            rez.Simplification();
+            return rez;
+
+        }
+        /// <summary>
+        /// Возвращает наибольший общий делитель двух чисел
+        /// </summary>
+        /// <param name="a">первое число</param>
+        /// <param name="b">второе число</param>
+        /// <returns></returns>
+        private int NOD(int a , int b)
+        {
+            while (a != b)
+            {
+                if (a > b)
+                {
+                    a = a - b;
+                }
+                else
+                {
+                    b = b - a;
+                }
+            }
+            return a;
+        }
+        public FractionalNumber(int integer , int numerator , int divider)
+        {
+            Numerator = numerator;
+            Divider = divider;
+            Integer = integer;
+            Recount();
+            Simplification();
+        }
+        public int Numerator
+        {
+            get { return numerator; }
+            set { numerator = value; }
+        }
+        public int Divider
+        {
+            get { return divider; }
+            set
+            {
+                if (value != 0)
+                {
+                    divider = value;
+                }
+            }
+        }
+        public int Integer
+        {
+            get { return integer; }
+            set { integer = value; }
+        }
+        void Recount()
+        {
+            integer += numerator / divider;
+            numerator = numerator % divider;
+        }
+        void Simplification()
+        {
+            if (this.Numerator!=0)
+            {
+                int nod = NOD(numerator , divider);
+                numerator = numerator / nod;
+                divider = divider / nod;
+            }
+        }
+        public string ToString()
+        {
+            Simplification();
+            Recount();
+            return Integer + " целых и " + numerator + "/" + divider;
+        }
+    }
 }

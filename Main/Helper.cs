@@ -35,7 +35,6 @@ namespace Helper
                     Console.Write(str);
                     break;
             }
-
         }
     }
 }

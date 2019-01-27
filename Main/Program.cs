@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Helper.MyLibrary;
 
+
 namespace Main
 {
     class Program
@@ -61,7 +62,6 @@ namespace Main
             Console.WriteLine($"{complex1_cls.ToString()} - {complex2_cls.ToString()} = {result_cls.ToString()}");
             /*****************************************************************************************/
         }
-
         /*
         2. а) С клавиатуры вводятся числа, пока не будет введен 0 (каждое число в новой строке).
         Требуется подсчитать сумму всех нечетных положительных чисел. Сами числа и сумму вывести на экран, используя tryParse;
@@ -74,21 +74,9 @@ namespace Main
         /// <param name="input">Проверяемое целое число</param>
         /// <param name="output">Передает введеное пользователем число из input в output вне зависимости от истинности условия</param>
         /// <returns></returns>
-        static bool PositiveNum(int input , out int output)
-        {
-            output = input;
-            if (input >= 0)
-            {
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         /// <summary>
-        /// Демонстрация задания 1
+        /// Демонстрация задания 2
         /// </summary>
         static void Presentation_Task2()
         {
@@ -130,9 +118,86 @@ namespace Main
             }
             Console.WriteLine($"Сумма всех нечетных элементов: {sum}");
         }
+        static bool PositiveNum(int input , out int output)
+        {
+            output = input;
+            if (input >= 0)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Демонстрация задания 3
+        /// </summary>
+        static void Presentation_Task3()
+        {
+            int[] int_num_div = new int[3];
+
+            consoleInputFractNums("первой дроби",out int_num_div[0], out int_num_div[1], out int_num_div[2]);
+            FractionalNumber a = new FractionalNumber(int_num_div[0] , int_num_div[1] , int_num_div[2]);
+            consoleInputFractNums("второй дроби" , out int_num_div[0] , out int_num_div[1] , out int_num_div[2]);
+            FractionalNumber b = new FractionalNumber(int_num_div[0] , int_num_div[1] , int_num_div[2]);
+
+            Print($"{a.ToString()}\n{b.ToString()}\n");
+
+            Print($"{a.ToString()} + {b.ToString()} = {(a + b).ToString()}");
+        }
+        /// <summary>
+        /// Метод берет у пользователя данные для дроби и проверяет их корректность
+        /// </summary>
+        /// <param name="text">описание какой дроби требуется ввести значения, например _первой дроби_</param>
+        /// <param name="integer">возвращает введенную целую часть</param>
+        /// <param name="numerator">возвращает введенный числитель</param>
+        /// <param name="divider">возвращает введный делитель</param>
+        static void consoleInputFractNums(string text , out int integer , out int numerator , out int divider)
+        {
+            int[] int_num_div = new int[3];
+            string parrFractNaum = "";
+            for (int i = 0 ; i < int_num_div.Length ; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        parrFractNaum = "целое";
+                        break;
+                    case 1:
+                        parrFractNaum = "числитель";
+                        break;
+                    case 2:
+                        parrFractNaum = "делитель";
+                        break;
+                }
+                while (true)
+                {
+                    Print($"Введите {parrFractNaum} {text}: ");
+                    try
+                    {
+                        int_num_div[i] = Convert.ToInt32(Console.ReadLine());
+                        if (i == 2 & int_num_div[i] == 0)
+                        {
+                            throw new Exception("Делитель не может быть равен нулю.");
+                        }
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"{ex.Message} Пожалуйста введите корректные данные");
+                    }
+                }
+            }
+            integer = int_num_div[0];
+            numerator = int_num_div[1];
+            divider = int_num_div[2];
+
+        }
         static void Main(string[] args)
         {
-            Presentation_Task1();
+            /*Presentation_Task1();
 
             Pause();
             Console.Clear();
@@ -140,7 +205,12 @@ namespace Main
             
             Presentation_Task2();
             Pause();
-            Console.Clear();
+            Console.Clear();*/
+
+            Presentation_Task3();
+
+
+
 
             Pause();
         }
