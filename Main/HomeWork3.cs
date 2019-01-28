@@ -124,15 +124,30 @@ namespace Main
             FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
 
             int newDiv;
-            FractionalNumber tempA = new FractionalNumber(f1.Integer, f1.Numerator, f1.Divider);
+            FractionalNumber tempA = new FractionalNumber(f1.Integer , f1.Numerator , f1.Divider);
             FractionalNumber tempB = new FractionalNumber(f2.Integer , f2.Numerator , f2.Divider);
             newDiv = tempA.Divider * tempB.Divider;
+
+            rez.Integer = 0;
+            if (tempA.Integer < 0)
+            {
+                tempA.Numerator *= -1;
+            }
+            tempA.Numerator = tempA.Numerator + (tempA.Integer * tempA.Divider);
+            tempA.Integer = 0;
+            if (tempB.Integer < 0)
+            {
+                tempB.Numerator *= -1;
+            }
+            tempB.Numerator = tempB.Numerator + (tempB.Integer * tempB.Divider);
+            tempB.Integer = 0;
+
             tempA.Numerator = tempA.Numerator * tempB.Divider;
             tempB.Numerator = tempB.Numerator * tempA.Divider;
             tempA.Divider = newDiv;
             tempB.Divider = newDiv;
 
-            rez.Integer = tempA.Integer + tempB.Integer;
+            
             rez.Divider = newDiv;
             rez.Numerator = tempA.Numerator + tempB.Numerator;
             rez.Recount();
@@ -148,6 +163,14 @@ namespace Main
         /// <returns></returns>
         private int NOD(int a , int b)
         {
+            if (a < 0)
+            {
+                a = a * -1;
+            }
+            if (b < 0)
+            {
+                b = b * -1;
+            }
             while (a != b)
             {
                 if (a > b)
@@ -192,19 +215,30 @@ namespace Main
         }
         void Recount()
         {
-            integer += numerator / divider;
-            numerator = numerator % divider;
+            this.integer += this.numerator / this.divider;
+            this.numerator = this.numerator % this.divider;
+            if (this.Integer < 0)
+            {
+                if (this.Numerator < 0)
+                {
+                    this.Numerator *= -1;
+                }
+                if (this.Divider < 0)
+                {
+                    this.Divider *= -1;
+                }
+            }
         }
         void Simplification()
         {
-            if (this.Numerator!=0)
+            if (this.Numerator != 0)
             {
                 int nod = NOD(numerator , divider);
                 numerator = numerator / nod;
                 divider = divider / nod;
             }
         }
-        public string ToString()
+        public string _ToString()
         {
             Simplification();
             Recount();
