@@ -143,9 +143,9 @@ namespace Main
             consoleInputFractNums("второй дроби" , out int_num_div[0] , out int_num_div[1] , out int_num_div[2]);
             FractionalNumber b = new FractionalNumber(int_num_div[0] , int_num_div[1] , int_num_div[2]);
 
-            Print($"{a.ToString()}\n{b.ToString()}\n");
+            Print($"{a._ToString()}\n{b._ToString()}\n");
 
-            Print($"{a.ToString()} + {b.ToString()} = {(a + b).ToString()}");
+            Print($"{a._ToString()} + {b._ToString()} = {(a + b)._ToString()}");
         }
         /// <summary>
         /// Метод берет у пользователя данные для дроби и проверяет их корректность
