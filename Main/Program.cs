@@ -145,7 +145,7 @@ namespace Main
 
             Print($"{a._ToString()}\n{b._ToString()}\n");
 
-            Print($"{a._ToString()} + {b._ToString()} = {(a + b)._ToString()}");
+            Print($"{a._ToString()} - {b._ToString()} = {(a - b)._ToString()}");
         }
         /// <summary>
         /// Метод берет у пользователя данные для дроби и проверяет их корректность
