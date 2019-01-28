@@ -136,6 +136,7 @@ namespace Main
         /// </summary>
         static void Presentation_Task3()
         {
+            Print("-=Демонстрация задания 3_Дроби=-\n" , "centr");
             int[] int_num_div = new int[3];
 
             consoleInputFractNums("первой дроби",out int_num_div[0], out int_num_div[1], out int_num_div[2]);
@@ -145,7 +146,10 @@ namespace Main
 
             Print($"{a._ToString()}\n{b._ToString()}\n");
 
-            Print($"{a._ToString()} / {b._ToString()} = {(a / b)._ToString()}");
+            Print($"{a._ToString()} + {b._ToString()} = {(a + b)._ToString()}\n");
+            Print($"{a._ToString()} - {b._ToString()} = {(a - b)._ToString()}\n");
+            Print($"{a._ToString()} * {b._ToString()} = {(a * b)._ToString()}\n");
+            Print($"{a._ToString()} / {b._ToString()} = {(a / b)._ToString()}\n");
         }
         /// <summary>
         /// Метод берет у пользователя данные для дроби и проверяет их корректность
@@ -197,7 +201,7 @@ namespace Main
         }
         static void Main(string[] args)
         {
-            /*Presentation_Task1();
+            Presentation_Task1();
 
             Pause();
             Console.Clear();
@@ -205,7 +209,7 @@ namespace Main
             
             Presentation_Task2();
             Pause();
-            Console.Clear();*/
+            Console.Clear();
 
             Presentation_Task3();
 

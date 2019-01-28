@@ -119,6 +119,28 @@ namespace Main
         int divider;
         int integer;
 
+        private int Сomplicating(ref int integer, ref int numerator, ref int divider)
+        {
+            if (integer < 0)
+            {
+                numerator *= -1;
+            }
+            numerator = tempA.Numerator + (integer * divider);
+            integer = 0;
+            if (integer < 0)
+            {
+                numerator *= -1;
+            }
+            numerator = numerator + (integer * divider);
+            integer = 0;
+            return 0;
+        }
+        /// <summary>
+        /// Перегрузка операции сложения возвращающая резальтат в виде экземпляра класса FractionalNumber
+        /// </summary>
+        /// <param name="f1"></param>
+        /// <param name="f2"></param>
+        /// <returns></returns>
         public static FractionalNumber operator +(FractionalNumber f1 , FractionalNumber f2)
         {
             FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
@@ -156,6 +178,12 @@ namespace Main
 
         }
 
+        /// <summary>
+        /// Перегрузка операции вычитания возвращающая резальтат в виде экземпляра класса FractionalNumber
+        /// </summary>
+        /// <param name="f1"></param>
+        /// <param name="f2"></param>
+        /// <returns></returns>
         public static FractionalNumber operator -(FractionalNumber f1 , FractionalNumber f2)
         {
             FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
@@ -192,6 +220,12 @@ namespace Main
             return rez;
         }
 
+        /// <summary>
+        /// Перегрузка операции умножения возвращающая резальтат в виде экземпляра класса FractionalNumber
+        /// </summary>
+        /// <param name="f1"></param>
+        /// <param name="f2"></param>
+        /// <returns></returns>
         public static FractionalNumber operator *(FractionalNumber f1 , FractionalNumber f2)
         {
             FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
@@ -221,6 +255,12 @@ namespace Main
             return rez;
         }
 
+        /// <summary>
+        /// Перегрузка операции деления возвращающая резальтат в виде экземпляра класса FractionalNumber
+        /// </summary>
+        /// <param name="f1"></param>
+        /// <param name="f2"></param>
+        /// <returns></returns>
         public static FractionalNumber operator /(FractionalNumber f1 , FractionalNumber f2)
         {
             FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
@@ -280,6 +320,12 @@ namespace Main
             }
             return a;
         }
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="integer">Целое</param>
+        /// <param name="numerator">Числитель</param>
+        /// <param name="divider">Знаменатель</param>
         public FractionalNumber(int integer , int numerator , int divider)
         {
             Numerator = numerator;
@@ -309,6 +355,9 @@ namespace Main
             get { return integer; }
             set { integer = value; }
         }
+        /// <summary>
+        /// Метод приведения дроби в правильную дробь
+        /// </summary>
         void Recount()
         {
             this.integer += this.numerator / this.divider;
@@ -330,6 +379,9 @@ namespace Main
                 this.Divider *= -1;
             }
         }
+        /// <summary>
+        /// Метод упрощения дроби
+        /// </summary>
         void Simplification()
         {
             if (this.Numerator != 0)
@@ -339,6 +391,10 @@ namespace Main
                 divider = divider / nod;
             }
         }
+        /// <summary>
+        /// Метод возвращающий строку с описанием представления дроби
+        /// </summary>
+        /// <returns></returns>
         public string _ToString()
         {
             Simplification();
