@@ -221,6 +221,35 @@ namespace Main
             return rez;
         }
 
+        public static FractionalNumber operator /(FractionalNumber f1 , FractionalNumber f2)
+        {
+            FractionalNumber rez = new FractionalNumber(1 , 1 , 1);
+
+            FractionalNumber tempA = new FractionalNumber(f1.Integer , f1.Numerator , f1.Divider);
+            FractionalNumber tempB = new FractionalNumber(f2.Integer , f2.Numerator , f2.Divider);
+
+            rez.Integer = 0;
+            if (tempA.Integer < 0)
+            {
+                tempA.Numerator *= -1;
+            }
+            tempA.Numerator = tempA.Numerator + (tempA.Integer * tempA.Divider);
+            tempA.Integer = 0;
+            if (tempB.Integer < 0)
+            {
+                tempB.Numerator *= -1;
+            }
+            tempB.Numerator = tempB.Numerator + (tempB.Integer * tempB.Divider);
+            tempB.Integer = 0;
+
+            rez.Numerator = tempA.Numerator * tempB.Divider;
+            rez.Divider = tempA.Divider * tempB.Numerator;
+
+            rez.Recount();
+            rez.Simplification();
+            return rez;
+        }
+
 
         /// <summary>
         /// Возвращает наибольший общий делитель двух чисел
@@ -294,6 +323,11 @@ namespace Main
                 {
                     this.Divider *= -1;
                 }
+            }
+            if (this.Numerator < 0 && this.Divider < 0)
+            {
+                this.Numerator *= -1;
+                this.Divider *= -1;
             }
         }
         void Simplification()
