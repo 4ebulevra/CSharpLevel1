@@ -119,21 +119,14 @@ namespace Main
         int divider;
         int integer;
 
-        private int Сomplicating(ref int integer, ref int numerator, ref int divider)
+        private static void Сomplicating(ref int integer , ref int numerator , ref int divider)
         {
-            if (integer < 0)
-            {
-                numerator *= -1;
-            }
-            numerator = tempA.Numerator + (integer * divider);
-            integer = 0;
             if (integer < 0)
             {
                 numerator *= -1;
             }
             numerator = numerator + (integer * divider);
             integer = 0;
-            return 0;
         }
         /// <summary>
         /// Перегрузка операции сложения возвращающая резальтат в виде экземпляра класса FractionalNumber
@@ -151,18 +144,8 @@ namespace Main
             newDiv = tempA.Divider * tempB.Divider;
 
             rez.Integer = 0;
-            if (tempA.Integer < 0)
-            {
-                tempA.Numerator *= -1;
-            }
-            tempA.Numerator = tempA.Numerator + (tempA.Integer * tempA.Divider);
-            tempA.Integer = 0;
-            if (tempB.Integer < 0)
-            {
-                tempB.Numerator *= -1;
-            }
-            tempB.Numerator = tempB.Numerator + (tempB.Integer * tempB.Divider);
-            tempB.Integer = 0;
+            Сomplicating(ref tempA.integer , ref tempA.numerator , ref tempA.divider);
+            Сomplicating(ref tempB.integer , ref tempB.numerator , ref tempB.divider);
 
             tempA.Numerator = tempA.Numerator * tempB.Divider;
             tempB.Numerator = tempB.Numerator * tempA.Divider;
@@ -194,18 +177,8 @@ namespace Main
             newDiv = tempA.Divider * tempB.Divider;
 
             rez.Integer = 0;
-            if (tempA.Integer < 0)
-            {
-                tempA.Numerator *= -1;
-            }
-            tempA.Numerator = tempA.Numerator + (tempA.Integer * tempA.Divider);
-            tempA.Integer = 0;
-            if (tempB.Integer < 0)
-            {
-                tempB.Numerator *= -1;
-            }
-            tempB.Numerator = tempB.Numerator + (tempB.Integer * tempB.Divider);
-            tempB.Integer = 0;
+            Сomplicating(ref tempA.integer , ref tempA.numerator , ref tempA.divider);
+            Сomplicating(ref tempB.integer , ref tempB.numerator , ref tempB.divider);
 
             tempA.Numerator = tempA.Numerator * tempB.Divider;
             tempB.Numerator = tempB.Numerator * tempA.Divider;
@@ -234,18 +207,8 @@ namespace Main
             FractionalNumber tempB = new FractionalNumber(f2.Integer , f2.Numerator , f2.Divider);
 
             rez.Integer = 0;
-            if (tempA.Integer < 0)
-            {
-                tempA.Numerator *= -1;
-            }
-            tempA.Numerator = tempA.Numerator + (tempA.Integer * tempA.Divider);
-            tempA.Integer = 0;
-            if (tempB.Integer < 0)
-            {
-                tempB.Numerator *= -1;
-            }
-            tempB.Numerator = tempB.Numerator + (tempB.Integer * tempB.Divider);
-            tempB.Integer = 0;
+            Сomplicating(ref tempA.integer , ref tempA.numerator , ref tempA.divider);
+            Сomplicating(ref tempB.integer , ref tempB.numerator , ref tempB.divider);
 
             rez.Numerator = tempA.Numerator * tempB.Numerator;
             rez.Divider = tempA.Divider * tempB.Divider;
@@ -269,18 +232,8 @@ namespace Main
             FractionalNumber tempB = new FractionalNumber(f2.Integer , f2.Numerator , f2.Divider);
 
             rez.Integer = 0;
-            if (tempA.Integer < 0)
-            {
-                tempA.Numerator *= -1;
-            }
-            tempA.Numerator = tempA.Numerator + (tempA.Integer * tempA.Divider);
-            tempA.Integer = 0;
-            if (tempB.Integer < 0)
-            {
-                tempB.Numerator *= -1;
-            }
-            tempB.Numerator = tempB.Numerator + (tempB.Integer * tempB.Divider);
-            tempB.Integer = 0;
+            Сomplicating(ref tempA.integer , ref tempA.numerator , ref tempA.divider);
+            Сomplicating(ref tempB.integer , ref tempB.numerator , ref tempB.divider);
 
             rez.Numerator = tempA.Numerator * tempB.Divider;
             rez.Divider = tempA.Divider * tempB.Numerator;
