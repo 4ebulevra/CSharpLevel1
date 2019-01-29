@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Устюжанин Максим Николаевич*/
 namespace Helper
 {
     class MyLibrary
@@ -35,7 +36,6 @@ namespace Helper
                     Console.Write(str);
                     break;
             }
-
         }
     }
 }
